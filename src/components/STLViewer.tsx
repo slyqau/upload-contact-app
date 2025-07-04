@@ -5,23 +5,15 @@ import { OrbitControls } from '@react-three/drei';
 import { STLLoader } from 'three-stdlib';
 import { Mesh, BufferGeometry } from 'three';
 
-
-HEAD
-
- ca4ea62e1f6eaf8379774eadeb98b0d8c548357e
-
 function Model({ url }: { url: string }) {
-const ref = useRef<Mesh>(null);
-const [geometry, setGeometry] = useState<BufferGeometry | null>(null);
-HEAD
-
-
-ca4ea62e1f6eaf8379774eadeb98b0d8c548357e
+  const ref = useRef<Mesh>(null);
+  const [geometry, setGeometry] = useState<BufferGeometry | null>(null);
 
   useEffect(() => {
-    // Charger le STL côté client
     const loader = new STLLoader();
-    loader.load(url, setGeometry);
+    loader.load(url, (geometry) => {
+      setGeometry(geometry);
+    });
     return () => setGeometry(null);
   }, [url]);
 

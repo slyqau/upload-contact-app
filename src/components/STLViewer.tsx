@@ -6,18 +6,17 @@ import { STLLoader } from 'three-stdlib';
 import { Mesh, BufferGeometry } from 'three';
 
 
-<<<<<<< HEAD
+HEAD
 
-=======
->>>>>>> ca4ea62e1f6eaf8379774eadeb98b0d8c548357e
+ ca4ea62e1f6eaf8379774eadeb98b0d8c548357e
 
 function Model({ url }: { url: string }) {
 const ref = useRef<Mesh>(null);
 const [geometry, setGeometry] = useState<BufferGeometry | null>(null);
-<<<<<<< HEAD
+HEAD
 
-=======
->>>>>>> ca4ea62e1f6eaf8379774eadeb98b0d8c548357e
+
+ca4ea62e1f6eaf8379774eadeb98b0d8c548357e
 
   useEffect(() => {
     // Charger le STL côté client

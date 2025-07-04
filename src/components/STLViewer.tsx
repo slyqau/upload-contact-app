@@ -5,6 +5,8 @@ import { OrbitControls } from '@react-three/drei';
 import { STLLoader } from 'three-stdlib';
 import * as THREE from 'three';
 
+
+
 function Model({ url }: { url: string }) {
   const ref = useRef<THREE.Mesh>(null);
   const [geometry, setGeometry] = useState<THREE.BufferGeometry | null>(null);

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 export default function Home() {
-// const [file, setFile] = useState<File | null>(null);
+  // const [file, setFile] = useState<File | null>(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -27,7 +27,7 @@ export default function Home() {
             type="file"
             accept=".stl,image/*"
             className="block w-full bg-light p-2 border border-primary rounded"
-            onChange={e => setFile(e.target.files ? e.target.files[0] : null)}
+            onChange={() => {}}   {/* <<< Ici ! */}
             required
           />
           <input

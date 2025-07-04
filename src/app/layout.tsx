@@ -5,7 +5,8 @@ export const metadata = {
   description: 'Service d\'upload et de contact ID 3D Concept',
 };
 
-export default function RootLayout({ children }) {
+import { ReactNode } from 'react';
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr">
       <body className="font-sans bg-light min-h-screen">

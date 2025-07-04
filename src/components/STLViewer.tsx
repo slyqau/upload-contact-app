@@ -1,13 +1,12 @@
-'use client';
 import { useEffect, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { STLLoader } from 'three-stdlib';
-import { Mesh, BufferGeometry } from 'three';
+import * as THREE from 'three';
 
 function Model({ url }: { url: string }) {
-  const ref = useRef<Mesh | null>(null);
-  const [geometry, setGeometry] = useState<BufferGeometry | null>(null);
+  const ref = useRef<THREE.Mesh | null>(null);
+  const [geometry, setGeometry] = useState<THREE.BufferGeometry | null>(null);
 
   useEffect(() => {
     const loader = new STLLoader();

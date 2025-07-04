@@ -6,14 +6,12 @@ import { STLLoader } from 'three-stdlib';
 import { Mesh, BufferGeometry } from 'three';
 
 function Model({ url }: { url: string }) {
-  const ref = useRef<Mesh>(null);
+  const ref = useRef<Mesh | null>(null);
   const [geometry, setGeometry] = useState<BufferGeometry | null>(null);
 
   useEffect(() => {
     const loader = new STLLoader();
-    loader.load(url, (geometry) => {
-      setGeometry(geometry);
-    });
+    loader.load(url, (geometry) => setGeometry(geometry));
     return () => setGeometry(null);
   }, [url]);
 

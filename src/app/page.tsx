@@ -1,36 +1,66 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+
+import { useState } from 'react';
 
 export default function Home() {
   const [file, setFile] = useState<File | null>(null);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [sent, setSent] = useState(false);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFile(e.target.files?.[0] || null);
+  // Simule l’envoi, à remplacer par ta logique plus tard
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSent(true);
+    // Ici, upload à faire plus tard si besoin
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
-      <h1 className="text-2xl font-bold mb-4">Upload de fichier STL ou image</h1>
-      <input
-        type="file"
-        accept=".stl,image/*"
-        onChange={handleFileChange}
-        className="mb-4"
-      />
-      {file && (
-        <div className="p-4 bg-green-100 rounded-xl mb-4">
-          <p>✅ Fichier reçu : {file.name}</p>
-        </div>
+    <div className="w-full max-w-lg bg-dark rounded-xl p-8 shadow-lg">
+      <h2 className="text-primary text-2xl font-bold mb-6 text-center">Upload de fichier STL ou image</h2>
+      {sent ? (
+        <div className="text-center text-primary font-semibold text-lg">Merci, votre message a bien été envoyé !</div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <input
+            type="file"
+            accept=".stl,image/*"
+            className="block w-full bg-light p-2 border border-primary rounded"
+            onChange={e => setFile(e.target.files ? e.target.files[0] : null)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Nom"
+            className="block w-full bg-light p-2 border border-primary rounded"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            className="block w-full bg-light p-2 border border-primary rounded"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+          />
+          <textarea
+            placeholder="Votre message..."
+            className="block w-full bg-light p-2 border border-primary rounded"
+            rows={4}
+            value={message}
+            onChange={e => setMessage(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="w-full bg-primary text-white p-2 rounded hover:bg-opacity-90 transition font-semibold"
+          >
+            Envoyer
+          </button>
+        </form>
       )}
-      {/* Place ici ton formulaire de contact */}
-      <form className="flex flex-col gap-2 w-64">
-        <input type="text" placeholder="Nom" className="border p-2 rounded" required />
-        <input type="email" placeholder="Email" className="border p-2 rounded" required />
-        <textarea placeholder="Votre message..." className="border p-2 rounded" required />
-        <button type="submit" className="bg-blue-600 text-white py-2 rounded mt-2 hover:bg-blue-700">
-          Envoyer
-        </button>
-      </form>
-    </main>
+    </div>
   );
 }

@@ -23,7 +23,7 @@ export default function Home() {
           alt="Logo ID 3D Concept"
           className="rounded-full border-4 border-[#2B241B] shadow-lg w-40 h-40 object-cover mb-6"
         />
-        <h2 className="text-[#378099] text-2xl font-extrabold mb-2 text-center">Upload de fichier STL ou image</h2>
+        <h2 className="text-[#378099] text-2xl font-extrabold mb-2 text-center">Téléchargement de fichier STL ou image</h2>
         <p className="text-[#E97413] text-center mb-4">Vos idées prennent forme</p>
         {sent ? (
           <div className="text-center text-[#378099] font-semibold text-lg">Merci, votre message a bien été envoyé !</div>

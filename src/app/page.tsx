@@ -28,7 +28,7 @@ export default function Home() {
         {sent ? (
           <div className="text-center text-[#378099] font-semibold text-lg">Merci, votre message a bien été envoyé !</div>
         ) : (
-          <form onSubmit={handleSubmit} className="w-full space-y-4">
+          <form onSubmit={handleSubmit} encType="multipart/form-data" className="w-full space-y-4">
             <label className="block">
               <span className="text-[#2B241B] font-semibold">Fichier</span>
               <input

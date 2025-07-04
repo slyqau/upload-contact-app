@@ -1,10 +1,7 @@
-// src/components/STLViewer.tsx
-
 import React, { useRef, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { STLLoader } from "three-stdlib";
-import { BufferGeometry } from "three";
-import type { Mesh } from "three"; // <-- c'est ça qui manquait
+import * as THREE from "three"; // <-- LE SEUL QUI MARCHE PARTOUT
 
 type STLViewerProps = {
   url: string;
@@ -12,12 +9,12 @@ type STLViewerProps = {
 };
 
 const Model = ({ url, color = "#ff8000" }: STLViewerProps) => {
-  const ref = useRef<Mesh>(null);
-  const [geometry, setGeometry] = useState<BufferGeometry | null>(null);
+  const ref = useRef<THREE.Mesh>(null); // <-- C'EST ÇA LA CLEF
+  const [geometry, setGeometry] = useState<THREE.BufferGeometry | null>(null);
 
   useEffect(() => {
     const loader = new STLLoader();
-    loader.load(url, (geom) => setGeometry(geom as BufferGeometry));
+    loader.load(url, (geom) => setGeometry(geom as THREE.BufferGeometry));
   }, [url]);
 
   if (!geometry) return null;

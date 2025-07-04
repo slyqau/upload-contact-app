@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { STLLoader } from 'three-stdlib';
-// @ts-expect-error: three has no types in this context (vercel build workaround)
+// @ts-ignore
 import * as THREE from 'three';
 
 

@@ -3,7 +3,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { STLLoader } from "three-stdlib";
-import { BufferGeometry, MeshStandardMaterial } from "three";
+import { BufferGeometry } from "three";
 import type { Mesh } from "three";
 
 type STLViewerProps = {

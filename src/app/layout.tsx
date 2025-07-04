@@ -11,8 +11,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="fr">
       <body className="font-sans bg-light min-h-screen">
         <header className="bg-primary flex items-center px-8 py-4 shadow">
-          <img src="/logo.png" alt="ID 3D Concept" className="h-28" />
-          {/* Ajoute ici la navigation ou autre si besoin */}
+                 {/* Ajoute ici la navigation ou autre si besoin */}
         </header>
         <main className="flex justify-center items-center flex-col min-h-[80vh]">
           {children}

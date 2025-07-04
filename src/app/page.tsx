@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 export default function Home() {
-  const [file, setFile] = useState<File | null>(null);
+  // Enlève 'file' tant que tu ne fais pas de traitement d'upload !
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -12,7 +12,7 @@ export default function Home() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSent(true);
-    // Ajoute ici ta logique d'upload plus tard
+    // Ajoute ici la logique d’upload quand tu voudras
   };
 
   return (
@@ -35,7 +35,7 @@ export default function Home() {
                 type="file"
                 accept=".stl,image/*"
                 className="mt-1 block w-full rounded border border-[#378099] bg-white text-[#2B241B] file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-[#378099] file:text-white hover:file:bg-[#2B241B] transition"
-                onChange={e => setFile(e.target.files ? e.target.files[0] : null)}
+                // PAS besoin de state file tant que tu ne fais rien avec
                 required
               />
             </label>

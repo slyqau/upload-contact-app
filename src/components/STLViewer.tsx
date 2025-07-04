@@ -8,8 +8,8 @@ import { Mesh, BufferGeometry } from 'three';
 
 
 function Model({ url }: { url: string }) {
-  const ref = useRef<THREE.Mesh>(null);
-  const [geometry, setGeometry] = useState<THREE.BufferGeometry | null>(null);
+const ref = useRef<Mesh>(null);
+const [geometry, setGeometry] = useState<BufferGeometry | null>(null);
 
   useEffect(() => {
     // Charger le STL côté client

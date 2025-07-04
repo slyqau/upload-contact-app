@@ -1,40 +1,40 @@
 // src/components/STLViewer.tsx
-import React, { useRef, useEffect } from "react";
+
+import React, { useRef, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 import { STLLoader } from "three-stdlib";
-import { Mesh, BufferGeometry } from "three";
+import { BufferGeometry, MeshStandardMaterial } from "three";
+import type { Mesh } from "three";
 
 type STLViewerProps = {
   url: string;
+  color?: string;
 };
 
-function Model({ url }: STLViewerProps) {
+const Model = ({ url, color = "#ff8000" }: STLViewerProps) => {
   const ref = useRef<Mesh>(null);
+  const [geometry, setGeometry] = useState<BufferGeometry | null>(null);
 
   useEffect(() => {
     const loader = new STLLoader();
-    loader.load(url, (geometry) => {
-      if (ref.current) {
-        ref.current.geometry = geometry as BufferGeometry;
-      }
-    });
+    loader.load(url, (geom) => setGeometry(geom as BufferGeometry));
   }, [url]);
 
+  if (!geometry) return null;
+
   return (
-    <mesh ref={ref}>
-      <meshStandardMaterial color="orange" />
+    <mesh ref={ref} geometry={geometry}>
+      <meshStandardMaterial color={color} />
     </mesh>
   );
-}
+};
 
-export default function STLViewer({ url }: STLViewerProps) {
+export default function STLViewer({ url, color }: STLViewerProps) {
   return (
-    <Canvas camera={{ position: [0, 0, 80], fov: 45 }}>
-      <ambientLight />
+    <Canvas style={{ width: "100%", height: 400 }}>
+      <ambientLight intensity={0.8} />
       <pointLight position={[10, 10, 10]} />
-      <Model url={url} />
-      <OrbitControls />
+      <Model url={url} color={color} />
     </Canvas>
   );
 }

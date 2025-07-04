@@ -24,3 +24,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom global CSS (facultatif, mais pour harmoniser la police) */
+body {
+  font-family: 'Montserrat', Arial, sans-serif;
+}

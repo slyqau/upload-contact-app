@@ -19,7 +19,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#378099] flex flex-col items-center justify-center relative font-sans">
       {/* Logo en haut à gauche */}
       <a href="https://id3dconcept.com" className="absolute top-6 left-6">
-        <img src="/logo.png" alt="Logo ID 3D Concept" className="h-14 w-14 rounded-full border-4 border-[#2B241B] bg-white" />
+        <img src="/logo.png" alt="Logo ID 3D Concept" className="h-28 w-28 rounded-full border-4 border-[#2B241B] bg-white" />
       </a>
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md px-8 py-10 flex flex-col items-center">
         <img src="/logo.png" alt="Logo ID 3D Concept" className="h-20 w-20 rounded-full mb-4 shadow border-2 border-[#378099]" />

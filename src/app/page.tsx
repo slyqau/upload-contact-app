@@ -1,73 +1,79 @@
-// src/app/page.tsx
+'use client';
 
-import Image from "next/image";
+import { useState } from 'react';
 
 export default function Home() {
+  const [file, setFile] = useState<File | null>(null);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSent(true);
+    // Ajoute ici ta logique d'upload plus tard
+  };
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#232323]">
-      <div className="flex flex-col items-center w-full max-w-md p-8 rounded-2xl shadow-2xl bg-white">
-        <Image
-          src="/logo.png"
-          alt="ID 3D Concept Logo"
-          width={120}
-          height={120}
-          className="mb-2"
-        />
-        <h1 className="text-2xl font-bold mb-2 text-[#232323] text-center">
-          Upload de fichier STL ou image
-        </h1>
-        <p className="mb-6 text-[#ff8000] text-center">
-          Vos idées prennent forme
-        </p>
-        <form
-          className="flex flex-col gap-3 w-full"
-          method="POST"
-          action="/api/upload"
-          encType="multipart/form-data"
-        >
-          <input
-            type="file"
-            name="file"
-            accept=".stl,image/*"
-            required
-            className="border border-gray-200 p-2 rounded-lg"
-          />
-          <input
-            type="text"
-            name="name"
-            placeholder="Nom"
-            required
-            className="border border-gray-200 p-2 rounded-lg"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            required
-            className="border border-gray-200 p-2 rounded-lg"
-          />
-          <textarea
-            name="message"
-            placeholder="Votre message…"
-            rows={3}
-            className="border border-gray-200 p-2 rounded-lg"
-          />
-          <button
-            type="submit"
-            className="bg-[#ff8000] text-white font-bold p-2 rounded-lg mt-2 transition hover:bg-orange-500"
-          >
-            Envoyer
-          </button>
-        </form>
-      </div>
-      <a
-        href="https://id3dconcept.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-8 text-gray-400 hover:text-[#ff8000] transition"
-      >
-        id3dconcept.com
+    <div className="min-h-screen bg-[#378099] flex flex-col items-center justify-center relative font-sans">
+      {/* Logo en haut à gauche */}
+      <a href="https://id3dconcept.com" className="absolute top-6 left-6">
+        <img src="/logo.png" alt="Logo ID 3D Concept" className="h-14 w-14 rounded-full border-4 border-[#2B241B] bg-white" />
       </a>
+      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md px-8 py-10 flex flex-col items-center">
+        <img src="/logo.png" alt="Logo ID 3D Concept" className="h-20 w-20 rounded-full mb-4 shadow border-2 border-[#378099]" />
+        <h2 className="text-[#378099] text-2xl font-extrabold mb-2 text-center">Upload de fichier STL ou image</h2>
+        <p className="text-[#E97413] text-center mb-4">Vos idées prennent forme</p>
+        {sent ? (
+          <div className="text-center text-[#378099] font-semibold text-lg">Merci, votre message a bien été envoyé !</div>
+        ) : (
+          <form onSubmit={handleSubmit} className="w-full space-y-4">
+            <label className="block">
+              <span className="text-[#2B241B] font-semibold">Fichier</span>
+              <input
+                type="file"
+                accept=".stl,image/*"
+                className="mt-1 block w-full rounded border border-[#378099] bg-white text-[#2B241B] file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-[#378099] file:text-white hover:file:bg-[#2B241B] transition"
+                onChange={e => setFile(e.target.files ? e.target.files[0] : null)}
+                required
+              />
+            </label>
+            <input
+              type="text"
+              placeholder="Nom"
+              className="block w-full bg-white p-2 border border-[#378099] rounded text-[#2B241B] placeholder:text-[#378099]/80"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              required
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              className="block w-full bg-white p-2 border border-[#378099] rounded text-[#2B241B] placeholder:text-[#378099]/80"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+            <textarea
+              placeholder="Votre message..."
+              className="block w-full bg-white p-2 border border-[#378099] rounded text-[#2B241B] placeholder:text-[#378099]/80"
+              rows={4}
+              value={message}
+              onChange={e => setMessage(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="w-full bg-[#2B241B] text-white p-2 rounded-lg font-bold text-lg hover:bg-[#378099] transition"
+            >
+              Envoyer
+            </button>
+          </form>
+        )}
+      </div>
+      <footer className="mt-8 text-white opacity-80">
+        <a href="https://id3dconcept.com" className="underline">id3dconcept.com</a>
+      </footer>
     </div>
   );
 }

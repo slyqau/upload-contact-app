@@ -10,7 +10,7 @@ export default function Home() {
   const [sending, setSending] = useState(false);
 
   // Nouveau handleSubmit qui envoie le FormData à l'API
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSending(true);
 

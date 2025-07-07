@@ -10,12 +10,12 @@ export default function Home() {
   const [sending, setSending] = useState(false);
 
   // Nouveau handleSubmit qui envoie le FormData à l'API
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSending(true);
-
-    const form = e.target;
-    const formData = new FormData(form);
+ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  const form = e.target as HTMLFormElement;
+  const formData = new FormData(form);
+  // ...
+};
 
     // Ajoute ceinture et bretelles (on force les states dedans)
     formData.set('name', name);

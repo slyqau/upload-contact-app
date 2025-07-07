@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     const message = formData.get('message') as string;
     const file = formData.get('file') as File | null;
 
-    let attachments = [];
+    const attachments = [];
     if (file) {
       const buffer = Buffer.from(await file.arrayBuffer());
       attachments.push({
